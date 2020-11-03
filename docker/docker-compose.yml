@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  hello_prisma_db:
+    image: "mysql:5.7"
+    container_name: ${MYSQL_CONTAINER_NAME}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+      - ./mysql/conf.d:/etc/mysql/conf.d
+    ports:
+      - "3306:3306"
